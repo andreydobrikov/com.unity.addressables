@@ -311,7 +311,9 @@ namespace UnityEditor.AddressableAssets.Build.DataBuilders
                 }
             }
 
-            var contentCatalog = new ContentCatalogData(ResourceManagerRuntimeData.kCatalogAddress);
+			string catalogAddress = AddressableAssetSettingsDefaultObject.Instance.DefaultCatalogAddress();
+
+			var contentCatalog = new ContentCatalogData(catalogAddress);
             contentCatalog.SetData(aaContext.locations.OrderBy(f => f.InternalId).ToList(), aaContext.Settings.OptimizeCatalogSize);
 
             contentCatalog.ResourceProviderData.AddRange(m_ResourceProviderData);

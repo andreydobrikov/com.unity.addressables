@@ -201,6 +201,19 @@ namespace UnityEditor.AddressableAssets
 			Settings = AddressableAssetSettings.Create(kDefaultConfigFolder, kDefaultConfigAssetName, true, true);
 			return Settings;
 		}
+
+		public string DefaultCatalogAddress()
+		{
+			foreach (var setting in Instance.settingsCollection)
+			{
+				if (setting.isDefault)
+				{
+					return setting.catalogAddress;
+				}
+			}
+
+			return UnityEngine.AddressableAssets.Initialization.ResourceManagerRuntimeData.kCatalogAddress;
+		}
 	}
 
 	[Serializable]
@@ -208,5 +221,6 @@ namespace UnityEditor.AddressableAssets
 	{
 		public AddressableAssetSettings addressableAssetSettings;
 		public bool isDefault;
+		public string catalogAddress;
 	}
 }
